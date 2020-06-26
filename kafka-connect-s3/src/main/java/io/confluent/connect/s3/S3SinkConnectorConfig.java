@@ -72,6 +72,10 @@ import static org.apache.kafka.common.config.ConfigDef.Range.atLeast;
 
 public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
 
+  //SF Group
+  public static final String  SF_ARCHIVAL_SCHEMA_KEYS = "sf.archival.schema.keys";
+  public static final String  SF_ARCHIVAL_PARTITION_KEYS = "sf.archival.partition.keys";
+
   // S3 Group
   public static final String S3_BUCKET_CONFIG = "s3.bucket.name";
 
@@ -219,6 +223,36 @@ public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
         connectorGroup,
         latestOrderInGroup
     );
+
+    {
+      final String group = "Sf";
+      int orderInGroup = 0;
+
+      configDef.define(
+          SF_ARCHIVAL_SCHEMA_KEYS,
+          Type.STRING,
+          "_plugin,_documentType",
+          Importance.HIGH,
+          "The test variable.",
+          group,
+          ++orderInGroup,
+          Width.LONG,
+          "Test variable"
+      );
+
+      configDef.define(
+          SF_ARCHIVAL_PARTITION_KEYS,
+          Type.STRING,
+          "_plugin,_documentType",
+          Importance.HIGH,
+          "The test variable.",
+          group,
+          ++orderInGroup,
+          Width.LONG,
+          "Test variable"
+      );
+
+    }
 
     {
       final String group = "S3";
