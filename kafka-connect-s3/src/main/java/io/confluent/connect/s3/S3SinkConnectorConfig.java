@@ -73,8 +73,10 @@ import static org.apache.kafka.common.config.ConfigDef.Range.atLeast;
 public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
 
   //SF Group
-  public static final String  SF_ARCHIVAL_SCHEMA_KEYS = "sf.archival.schema.keys";
-  public static final String  SF_ARCHIVAL_PARTITION_KEYS = "sf.archival.partition.keys";
+  public static final String SF_ARCHIVAL_SCHEMA_KEYS = "sf.archival.schema.keys";
+  public static final String SF_ARCHIVAL_PARTITION_KEYS = "sf.archival.partition.keys";
+  public static final String SF_AWS_SECRET_ACCESS_KEY_CONFIG = "sf.aws.secret.access.key";
+  public static final String SF_AWS_ACCESS_KEY_ID_CONFIG = "sf.aws.access.key.id";
 
   // S3 Group
   public static final String S3_BUCKET_CONFIG = "s3.bucket.name";
@@ -250,6 +252,30 @@ public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
           ++orderInGroup,
           Width.LONG,
           "Test variable"
+      );
+
+      configDef.define(
+          SF_AWS_SECRET_ACCESS_KEY_CONFIG,
+          Type.STRING,
+          "",
+          Importance.HIGH,
+          "AWS access id.",
+          group,
+          ++orderInGroup,
+          Width.LONG,
+          "AWS access id"
+      );
+
+      configDef.define(
+          SF_AWS_ACCESS_KEY_ID_CONFIG,
+          Type.STRING,
+          "",
+          Importance.HIGH,
+          "AWS secret access key.",
+          group,
+          ++orderInGroup,
+          Width.LONG,
+          "AWS secret access key"
       );
 
     }
